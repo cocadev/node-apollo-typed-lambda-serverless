@@ -1,7 +1,7 @@
 {
-  "name": "@tomyitav/apollo-typed-lambda",
-  "version": "1.0.0",
-  "description": "",
+  "name": "apollo-typed-lambda",
+  "version": "2.0.0",
+  "description": "kingofdevs",
   "main": "index.js",
   "scripts": {
     "build-schema": "rimraf ./dist/graphql/schema/ && find src/graphql/types -iname \"*.ts\" > ts-files.txt && tsc ./src/graphql/schema/genereator-schema.ts --outDir ./dist/graphql/schema/ --lib esnext && tsc @ts-files.txt --outDir ./dist/graphql/types --lib esnext && rimraf ts-files.txt",

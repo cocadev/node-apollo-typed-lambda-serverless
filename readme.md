@@ -9,7 +9,7 @@
 
 Boilerplate project for [create-graphql-app](https://github.com/tomyitav/create-graphql-app) cli.
 
-Deploy [graphql-server-typed](https://github.com/tomyitav/graphql-server-typed) on AWS lambda, using:
+Deploy [graphql-server-typed](https://github.com/kingofdevs/node-apollo-typed-lambda-serverless) on AWS lambda, using:
 
 + typescript
 + apollo-server 2
