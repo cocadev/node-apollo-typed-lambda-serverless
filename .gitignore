@@ -6,3 +6,6 @@ npm-debug.log
 .serverless
 types.d.ts
 ts-files.txt
+
+yarn.lock
+package-lock.json
