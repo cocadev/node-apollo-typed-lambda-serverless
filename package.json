@@ -52,7 +52,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/stripe": "^7.13.19",
-    "apollo-server-lambda": "2.6.4",
+    "apollo-server-lambda": "2.15.0",
     "core-js": "3.1.4",
     "couchbase": "^2.6.9",
     "graphql": "14.3.1",
