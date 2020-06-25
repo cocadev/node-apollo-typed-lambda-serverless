@@ -1,0 +1,97 @@
+{
+  "name": "@tomyitav/apollo-typed-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-schema": "rimraf ./dist/graphql/schema/ && find src/graphql/types -iname \"*.ts\" > ts-files.txt && tsc ./src/graphql/schema/genereator-schema.ts --outDir ./dist/graphql/schema/ --lib esnext && tsc @ts-files.txt --outDir ./dist/graphql/types --lib esnext && rimraf ts-files.txt",
+    "build-schema:win": "rimraf ./dist/graphql/schema/ && dir /s /b \"src/graphql/types\" | findstr /e .ts > ts-files.txt && tsc ./src/graphql/schema/genereator-schema.ts --outDir ./dist/graphql/schema/ --lib esnext && tsc @ts-files.txt --outDir ./dist/graphql/types --lib esnext && del ts-files.txt",
+    "generate-ts": "gql-gen",
+    "pregenerate": "npm run build-schema",
+    "pregenerate:win": "npm run build-schema:win",
+    "generate": "npm run generate-ts",
+    "generate:win": "npm run generate-ts",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean && npm run generate",
+    "build": "npm run tsc",
+    "build:win": "npm run tsc:win",
+    "start": "sls offline start --skipCacheInvalidation",
+    "dev": "tsc --watch & nodemon dist",
+    "test": "tsc && mocha dist/**/*.spec.js",
+    "lint": "eslint src --ext ts",
+    "tsc": "tsc",
+    "tsc:win": "tsc",
+    "sls:offline": "npm run build && npm start",
+    "sls:offline:win": "npm run build && npm start",
+    "tslint": "tslint --fix -c tslint.json 'src/**/*.ts'",
+    "prettier": "prettier --write \"src/**/*.ts\"",
+    "precommit-tslint": "tslint --fix -c tslint.json",
+    "precommit-prettier": "prettier --write",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "deploy": "npm run build && sls deploy"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.ts": [
+        "npm run precommit-tslint",
+        "npm run precommit-prettier",
+        "git add"
+      ]
+    }
+  },
+  "_moduleAliases": {
+    "@src": "dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/stripe": "^7.13.19",
+    "apollo-server-lambda": "2.6.4",
+    "core-js": "3.1.4",
+    "couchbase": "^2.6.9",
+    "graphql": "14.3.1",
+    "graphql-tools": "4.0.4",
+    "injection-js": "2.2.1",
+    "lodash": "^4.17.15",
+    "md5-hash": "^1.0.1",
+    "merge-graphql-schemas": "1.5.8",
+    "module-alias": "2.2.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.8.0",
+    "mongoose-paginate-v2": "^1.3.6",
+    "ottoman": "^1.0.6",
+    "pg": "^4.5.7",
+    "pg-hstore": "^2.3.2",
+    "reflect-metadata": "0.1.13",
+    "sequelize": "^3.35.1",
+    "sequelize-cli": "^2.8.0",
+    "stripe": "^7.15.0",
+    "zone.js": "0.9.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.8.3",
+    "@graphql-codegen/typescript": "1.2.1",
+    "@graphql-codegen/typescript-operations": "1.2.1",
+    "@types/graphql": "14.2.1",
+    "@types/mongodb": "^3.3.12",
+    "@types/mongoose": "^5.5.32",
+    "@types/node": "12.0.12",
+    "husky": "2.4.1",
+    "lint-staged": "8.2.1",
+    "prettier": "1.18.2",
+    "rimraf": "2.6.3",
+    "serverless-dotenv-plugin": "2.1.1",
+    "serverless-offline": "5.3.3",
+    "tslint": "5.18.0",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-eslint-rules": "5.4.0",
+    "tslint-react": "4.0.0",
+    "typescript": "3.5.3"
+  }
+}
